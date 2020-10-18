@@ -240,6 +240,22 @@
   #define HOMING_FEEDRATE_XY (50*60)
 #endif
 
+#if ENABLED(SENSORLESS_HOMING)
+  #if EITHER(USE_XMAX_PLUG, USE_YMAX_PLUG)
+    #undef X_MAX_ENDSTOP_INVERTING
+    #undef Y_MAX_ENDSTOP_INVERTING
+
+    #define X_MAX_ENDSTOP_INVERTING false
+    #define Y_MAX_ENDSTOP_INVERTING false
+  #else  
+    #undef X_MIN_ENDSTOP_INVERTING
+    #undef Y_MIN_ENDSTOP_INVERTING
+
+    #define X_MIN_ENDSTOP_INVERTING false
+    #define Y_MIN_ENDSTOP_INVERTING false
+  #endif
+#endif
+
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
