@@ -17,14 +17,14 @@
 //===========================================================================
 // Uncomment the define line for what board you have (V4.2.2 or V4.2.7)
 //===========================================================================
-//#define ENDER3_V422_BOARD //Ender 3 with V4.2.2 Board
-//#define ENDER3_V427_BOARD //Ender 3 with V4.2.7 Board
-//#define ENDER3_V2 //Only has the V4.2.2 Board
-//#define ENDER5_V422_BOARD //Ender 5 with V4.2.2 Board
-//#define ENDER5_V427_BOARD //Ender 5 with V4.2.7 Board
+//#define ENDER3_V422_BOARD    //Ender 3 with V4.2.2 Board
+//#define ENDER3_V427_BOARD    //Ender 3 with V4.2.7 Board
 
-// If your V4.2.2 board has TMC2208 (silent) drivers on it uncomment the below line
-//#define V422_TMC2208_BOARD
+//#define ENDER3_V2_V422_BOARD //Ender 3 V2 with V4.2.2 Board
+//#define ENDER3_V2_V427_BOARD //Ender 3 V2 with V4.2.7 Board
+
+//#define ENDER5_V422_BOARD    //Ender 5 with V4.2.2 Board
+//#define ENDER5_V427_BOARD    //Ender 5 with V4.2.7 Board
 
 // If you are using our EZOut V1/V2 (connected to LCD header) filament sensor kit please follow the install guide
 // and then uncomment the #define EZOUT_ENABLE line below.
@@ -45,8 +45,7 @@
 //#define ENDER_XTENDER_400XL
 //#define ENDER_XTENDER_XL
 
-// Ender 5 Specific Options
-
+// Ender 5 - Leadscrew Setting
 // If you have the new Ender 5/5 Pro Model that has the new 800steps/mm Z leadscrew uncomment the below option to set the correct steps/mm
 //#define ENDER5_NEW_LEADSCREW
 
@@ -409,7 +408,7 @@
   #define Z_MIN_PROBE_ENDSTOP_INVERTING false
   #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
-  #if ENABLED(V422_TMC2208_BOARD) || ENABLED(ENDER3_V427_BOARD) || ENABLED(ENDER5_V427_BOARD)
+  #if ENABLED(ENDER3_V427_BOARD) || ENABLED(ENDER5_V427_BOARD)
     #define X_DRIVER_TYPE TMC2208_STANDALONE
     #define Y_DRIVER_TYPE TMC2208_STANDALONE
     #define Z_DRIVER_TYPE TMC2208_STANDALONE
@@ -487,18 +486,24 @@
 // End Ender 3/5 V422 Board Settings
  
 // Ender 3 V2 Settings
-#if ENABLED(ENDER3_V2)
+#if ENABLED(ENDER3_V2_V422_BOARD) || ENABLED(ENDER3_V2_V427_BOARD)
   #define SERIAL_PORT 1
   #define SERIAL_PORT_2 3
   
-  #if ENABLED(ENDER3_V2) && ENABLED(MANUAL_MESH_LEVELING)
+  #if ENABLED(MANUAL_MESH_LEVELING)
     #error "Due to closed source LCD firmware, Manual Mesh Leveling is not available on the Ender 3 V2."
   #endif
 
   #define BAUDRATE 115200
 
-  #ifndef MOTHERBOARD
-    #define MOTHERBOARD BOARD_CREALITY_V4
+  #if ENABLED(ENDER3_V2_V422_BOARD) || ENABLED(ENDER3_V2_V422_BOARD)
+    #ifndef MOTHERBOARD
+      #define MOTHERBOARD BOARD_CREALITY_V4
+    #endif
+  #else
+    #ifndef MOTHERBOARD
+      #define MOTHERBOARD BOARD_CREALITY_V427
+    #endif
   #endif
 
   #if ENABLED(CUSTOM_ESTEPS)
