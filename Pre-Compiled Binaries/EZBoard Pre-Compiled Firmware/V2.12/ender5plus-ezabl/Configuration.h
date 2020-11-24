@@ -1,10 +1,11 @@
 /**
  * For directions on how to use this firmware visit http://uf2.th3dstudio.com
- * THIS VERSION IS NOT FOR PRODUCTION USE AT THIS TIME AND ONLY AVAILABLE FOR TESTING PURPOSES
- * NO IMPLIED SUPPORT OR WARRANTY IS PROVIDED WITH THIS FIRMWARE RELEASE
  */
+
 #pragma once
 #define CONFIGURATION_H_VERSION 020007
+
+//#@CONFIGURATION_START_FLAG
 
 //===========================================================================
 //============================ TH3D Configuration ===========================
@@ -13,47 +14,102 @@
 // ONLY UNCOMMENT THINGS IN ONE PRINTER SECTION!!! IF YOU HAVE MULTIPLE MACHINES FLASH THEM ONE AT A TIME.
 
 //===========================================================================
-// *************   CREALITY PRINTERS W/MELZI BOARD (1284P)    ***************
+// ****************    EZBOARD LITE BOARD POWERED PRINTERS   ****************
 //===========================================================================
 
+// CR-10 Series -------------------------------------------------------------
 //#define CR10
 //#define CR10_MINI
 //#define CR10_S4
 //#define CR10_S5
+
+// CR-10S Series ------------------------------------------------------------
+//#define CR10S
+//#define CR10S_MINI
+//#define CR10S_S4
+//#define CR10S_S5
+
+// Ender Series -------------------------------------------------------------
 //#define ENDER2
 //#define ENDER3
 //#define ENDER5
+#define ENDER5_PLUS
 
-// If you are using our EZOut V1/V2 (connects to LCD header) filament sensor kit please follow the install guide
-// and then uncomment the #define EZOUT_ENABLE line below.
-// Do NOT ever connect our filament sensor without the supplied adapter board.
-//#define EZOUT_ENABLE
+// Other Machines -----------------------------------------------------------
+//#define CR20
+// The CR-20 Needs special LCD wiring with dupont jumper wires until we can release an adapter PCB.
+// The diagram for wiring is in the firmware source folder called "CR20EZBoardLCDWiring.png". Dupont jumper wires will work to make the connections.
 
-// EZABL Probe Mounts
-//#define CR10_OEM
-//#define CR10_VOLCANO
-//#define CR10_V6HEAVYDUTY
-//#define CR10_FANG
-//#define ENDER2_OEM
-//#define ENDER2_V6
-//#define ENDER3_OEM
-//#define ENDER5_OEM
-//#define TM3DAERO
-//#define TM3DAERO_EXTENDED
-//#define PETSFANG //This is the RIGHT mounted version - if using the left mount please use the CUSTOM_PROBE option.
-//#define CUSTOM_PROBE
+// Sovol Machines -----------------------------------------------------------
+//#define SOVOL_SV01
 
-// Ender 3 Specific Options
+// Filament Sensor Options --------------------------------------------------
+// If your machine came stock with a filament sensor it will be enabled automatically. If you replaced your stock sensor with our EZOut or you added an EZOut enabling the EZOUTV2_ENABLE will override the Creality sensor if your machine had one
 
-// Ender 3 Xtender Kit Options
+// If you are using our EZOut Sensor connect to the FIL SENSOR header with the RED wire lined up with the "5V" marking by the header and uncomment the below line.
+//#define EZOUTV2_ENABLE
+
+// If you are using the Creality CR-10S Sensor connect to the FIL SENSOR header with the RED wire lined up with the "5V" marking by the header and uncomment the below line.
+//#define CR10S_STOCKFILAMENTSENSOR
+
+// EZABL Probe Mounts -------------------------------------------------------
+//#define CR10_OEM                 //OEM Mount for Creality Machines (Ender3/Ender5/CR-10/CR-10S/CR-20)
+//#define ENDER2_OEM               //Ender 2 Specific OEM Mount
+//#define ENDER2_V6                //Ender 2 Specific V6 Mount
+//#define SV01_OEM_MOUNT           //Sovol SV01 OEM Mount
+//#define CR10_VOLCANO             //TH3D CR-10 Volcano Mount 
+//#define CR10_V6HEAVYDUTY         //V6 Heavy Duty Mount
+//#define TM3DAERO                 //TM3D Aero Mount for V6
+//#define TM3DAERO_EXTENDED        //TM3D Arto Mount for Volcano
+//#define PETSFANG                 //This is the RIGHT mounted version
+//#define CUSTOM_PROBE             //For any other probe mount (also used for BL Touch), Enter offsets below
+
+// Ender 5 Plus ONLY ABL Settings -------------------------------------------
+// By default the Ender 5 Plus comes with a BL Touch. Enabling the ENDER5_PLUS_EZABL or ENDER5_PLUS_NOABL will override the BL Touch setting
+// If you are using the stock BL Touch with a non-stock mount enable the CUSTOM_PROBE line above and enter the offsets below for the new mount.
+#define ENDER5_PLUS_EZABL
+//#define ENDER5_PLUS_NOABL
+
+// Advanced Settings --------------------------------------------------------
+// These settings do not typically need to be adjusted except for machines that do not follow stock configs
+
+// If you are using a modded machine with a higher Z height use the below option to change the height. This value is in mm.
+//#define CUSTOM_ZHEIGHT 400
+
+// If you have the new Ender 5 or Ender 5 Pro Model that has the new leadscrew uncomment the below option to set the correct stepping mode for the Z driver
+//#define ENDER5_NEW_LEADSCREW
+
+// Dual Z Motor Settings
+// When running dual Z motors uncomment the below line. This will increase the Z motor driver current for 2x motors.
+//#define DUAL_Z_MOTORS
+
+// Axis Direction Settings
+// If you need to reverse the direction of a motor uncomment the below option for that axis.
+// E motor settings are below in the Extruder Settings Section
+//#define REVERSE_X_MOTOR
+//#define REVERSE_Y_MOTOR
+//#define REVERSE_Z_MOTOR
+
+// E Motor Torque Settings
+// By default we have StealthChop2 Disabled for the E axis. This is due to the possibility of losing steps
+// due to the low torque nature of StealthChop2. If you want to quiet down the E motor you can uncomment the
+// below line. However, if you get lost steps and inconsistent extrusion then disable this option.
+//#define STEALTHCHOP_E
+
+// Fix for Older EZABL Kits
+// If you are having issues with the EZABL not triggering when connected to the Z-Stop header you can use the servo header pins.
+// See here for details: https://www.th3dstudio.com/knowledgebase/ezabl-ezboard-not-triggering-fix/
+//#define V3_EZABL_ON_SERVO
+
+// E3D PT100 Thermocouple Support
+// Refer to the EZBoard installation documentation for connecting the PT100 to the EZBoard Expansion Header
+//#define EZBOARD_PT100
+
+// Ender Xtender Kit Options
 //#define ENDER_XTENDER_300
 //#define ENDER_XTENDER_400
 //#define ENDER_XTENDER_400XL
 //#define ENDER_XTENDER_XL
-
-// Ender 5 - Leadscrew Setting
-// If you have the new Ender 5/5 Pro Model that has the new 800steps/mm Z leadscrew uncomment the below option to set the correct steps/mm
-//#define ENDER5_NEW_LEADSCREW
 
 //===========================================================================
 // *************************  END PRINTER SECTION   *************************
@@ -110,7 +166,7 @@
   *
   * Specify a Probe position as { X, Y, Z }
   * Do NOT enter an number for the Z position in here. Store your offset in EEPROM.
-  * 
+  *
   * When is the offset POSITIVE?
   * If the probe is right of the nozzle the offset on X is POSITIVE
   * If the probe is behind of the nozzle the offset on Y is POSITIVE
@@ -139,6 +195,9 @@
 //#define CUSTOM_ESTEPS
 #define CUSTOM_ESTEPS_VALUE 463
 //#define REVERSE_E_MOTOR_DIRECTION
+
+// If you are using a pancake stepper enable the PANCAKE_STEPPER option to reduce the motor current to lower the stepper temperature
+//#define PANCAKE_STEPPER
 
 // FILAMENT SENSOR UNLOAD SETTINGS -----------------
 // If you have a filament sensor that is physically mounted to the machine you can enable MOUNTED_FILAMENT_SENSOR to set the unload length to 0 to prevent filament from backing up in the sensor by uncommenting MOUNTED_FILAMENT_SENSOR 
@@ -211,11 +270,11 @@
 #define LINEAR_ADVANCE_K 0
 
 // BL TOUCH ----------------------------------------
-// If you want to use the BL-Touch with our EZOut board uncomment the 2 lines below and set your servo pin (27 for all machines except Ender 2, Ender 2 uses 29).
+// If you want to use the BL-Touch uncomment the 2 lines below and refer to the installation guide for the EZBoard to connect the probe.
 // You also need to uncomment #define CUSTOM_PROBE above and then enter in your offsets above in the CUSTOM PROBE section.
 //#define BLTOUCH
-// Here is where you set your servo pin.
-//#define SERVO0_PIN 27
+// Here is where you set your servo pin. For EZBoard use P2_04
+//#define SERVO0_PIN P2_04
 
 // MANUAL MESH LEVELING ----------------------------
 // If you want to use manual mesh leveling you can enable the below option. This is for generating a MANUAL mesh WITHOUT a probe. To change the mesh inset value change the EZABL_PROBE_EDGE setting above.
@@ -234,6 +293,8 @@
 // **********************  END CONFIGURATION SETTINGS   *********************
 //===========================================================================
 
+//#@CONFIGURATION_END_FLAG
+
 /**
  * ****************************DO NOT TOUCH ANYTHING BELOW THIS COMMENT**************************
  * Core machine settings are below. Do NOT modify these unless you understand what you are doing.
@@ -243,52 +304,67 @@
  * Machine Configuration Settings
  */
  
- // PRINTER Settings
-#if ENABLED(CR10) || ENABLED(CR10_MINI) || ENABLED(CR10_S4) || ENABLED(CR10_S5) || ENABLED(ENDER2)  || ENABLED(ENDER3) || ENABLED(ENDER5)
-  // Sanity Checks for V11X boards
-  #if ENABLED(EZOUT_ENABLE) && ENABLED(BLTOUCH)
-    #error "You cannot use the BL Touch and EZOut Filament sensor together on this board."
-  #endif
+//EZBoard based Machine Settings
+#if ENABLED(CR10) || ENABLED(CR10_MINI) || ENABLED(CR10_S4) || ENABLED(CR10_S5) || ENABLED(CR10S) || ENABLED(CR10S_MINI) || ENABLED(CR10S_S4) || ENABLED(CR10S_S5) || ENABLED(ENDER2) || ENABLED(ENDER3) || ENABLED(ENDER5) || ENABLED(ENDER5_PLUS) || ENABLED(SOVOL_SV01) || ENABLED(CR20)
 
-  #if ENABLED(ENDER5_NEW_LEADSCREW)
-    #define CREALITY_Z_STEPS 800
-  #else
-    #define CREALITY_Z_STEPS 400
-  #endif
-  
-  #define SERIAL_PORT 0
-
-  #define SPACE_SAVER
-  #define SLIM_LCD_MENUS
-
+  #define SERIAL_PORT -1
   #define BAUDRATE 115200
   
-  #if ENABLED(ENDER2)
-    #define MINIPANEL
+  #if ENABLED(CR20) || ENABLED(ENDER2)
+    #define MKS_MINI_12864
   #else
     #define CR10_STOCKDISPLAY
   #endif
+  
+  #if ENABLED(CR10S) || ENABLED(CR10S_S4) || ENABLED(CR10S_S5) || ENABLED(SOVOL_SV01)
+    //S models assume that you have 2x motors, filament sensor, and are using the dual adapter.
+    //So lets up the VREF on Z and reverse the Z axis when using the dual motor adapter and enable the filament sensor
+	
+    #define DUAL_Z_MOTORS
 
+    #if ENABLED(REVERSE_Z_MOTOR)
+      #undef REVERSE_Z_MOTOR
+    #else
+      #define REVERSE_Z_MOTOR
+    #endif
+  
+    #if ENABLED(SOVOL_SV01)
+      #define EZOUTV2_ENABLE
+    #endif
+  
+    #if DISABLED(EZOUTV2_ENABLE) 
+      #define CR10S_STOCKFILAMENTSENSOR
+    #endif
+
+    #if ENABLED(CR10S)
+      #define CR10
+    #elif ENABLED(CR10S_S4)
+      #define CR10_S4
+    #elif ENABLED(CR10S_S5)
+      #define CR10_S5
+    #endif
+    
+  #endif
+  
   #ifndef MOTHERBOARD
-    #define MOTHERBOARD BOARD_MELZI_CREALITY
+    #define MOTHERBOARD BOARD_TH3D_EZBOARD
   #endif
-
-  #if ENABLED(EZOUT_ENABLE)
-    #define SPEAKER_KILL
-  #endif
-
+  
   #if ENABLED(CUSTOM_ESTEPS)
-    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, CREALITY_Z_STEPS, CUSTOM_ESTEPS_VALUE }
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, CUSTOM_ESTEPS_VALUE }
+  #elif ENABLED(SOVOL_SV01)
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 402 }
   #else
-    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, CREALITY_Z_STEPS, 95 }
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95 }
   #endif
+  
   #define DEFAULT_MAX_FEEDRATE          { 200, 200, 15, 50 }
   #define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 500, 5000 }
 
   #define DEFAULT_ACCELERATION          500
   #define DEFAULT_RETRACT_ACCELERATION  500
   #define DEFAULT_TRAVEL_ACCELERATION   1000
-
+  
   #define CLASSIC_JERK
   #if ENABLED(CLASSIC_JERK)
     #if ENABLED(CR10_S4) || ENABLED(CR10_S5)
@@ -302,39 +378,48 @@
   #endif
 
   #define DEFAULT_EJERK    5.0
-
+  
+  #define SHOW_BOOTSCREEN
+  
   #define EXTRUDERS 1
-
+  
   #if ENABLED(CR10)
     #define X_BED_SIZE 300
     #define Y_BED_SIZE 300
     #define Z_MAX_POS 400
+    #define PRINTER_VOLTAGE_12
   #endif
 
-  #if ENABLED(CR10_MINI)
+  #if ENABLED(CR10_MINI) || ENABLED(CR10S_MINI)
     #define X_BED_SIZE 300
     #define Y_BED_SIZE 220
     #define Z_MAX_POS 300
+    #define PRINTER_VOLTAGE_12
   #endif
 
   #if ENABLED(CR10_S4)
     #define X_BED_SIZE 400
     #define Y_BED_SIZE 400
     #define Z_MAX_POS 400
+    #define PRINTER_VOLTAGE_12
+    #define SLOWER_PROBE_MOVES
   #endif
 
   #if ENABLED(CR10_S5)
     #define X_BED_SIZE 500
     #define Y_BED_SIZE 500
     #define Z_MAX_POS 500
+    #define PRINTER_VOLTAGE_12
+    #define SLOWER_PROBE_MOVES
   #endif
 
   #if ENABLED(ENDER2)
     #define X_BED_SIZE 160
     #define Y_BED_SIZE 150
     #define Z_MAX_POS 220
+    #define PRINTER_VOLTAGE_12
   #endif
-  
+
   #if ENABLED(ENDER3)
     #if ENABLED(ENDER_XTENDER_400)
       #define X_BED_SIZE 400
@@ -357,23 +442,56 @@
       #define Y_BED_SIZE 235
       #define Z_MAX_POS 250
     #endif
+    #define PRINTER_VOLTAGE_24
   #endif
-  
+
   #if ENABLED(ENDER5)
     #define X_BED_SIZE 220
     #define Y_BED_SIZE 220
     #define Z_MAX_POS 300
+    #define PRINTER_VOLTAGE_24
   #endif
   
+  #if ENABLED(ENDER5_PLUS)
+    #define X_BED_SIZE 350
+    #define Y_BED_SIZE 350
+    #define Z_MAX_POS 400
+    #define PRINTER_VOLTAGE_24
+	#define REVERSE_ENCODER_DIRECTION
+	#define ENDER5_NEW_LEADSCREW
+    #define EZOUTV2_ENABLE
+    #define DUAL_Z_MOTORS
+	#define MOUNTED_FILAMENT_SENSOR
+  #endif
+
+  #if ENABLED(SOVOL_SV01)
+    #define X_BED_SIZE 280
+    #define Y_BED_SIZE 240
+    #define Z_MAX_POS 300
+    #define PRINTER_VOLTAGE_24
+  #endif
+
+  #if ENABLED(CR20)
+    #define X_BED_SIZE 220
+    #define Y_BED_SIZE 220
+    #define Z_MAX_POS 250
+    #define PRINTER_VOLTAGE_24
+  #endif
+  
+  #if (CUSTOM_ZHEIGHT > Z_MAX_POS)
+    #undef Z_MAX_POS
+    #define Z_MAX_POS CUSTOM_ZHEIGHT
+  #endif
+
   #if ENABLED(HOME_ADJUST)
-    #define X_MIN_POS X_HOME_ADJUST_LOCATION
-    #define Y_MIN_POS Y_HOME_ADJUST_LOCATION
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
   #else
     #define X_MIN_POS 0
     #define Y_MIN_POS 0
   #endif
-
-  #if ENABLED(ENDER5)
+  
+  #if ENABLED(ENDER5) || ENABLED(ENDER5_PLUS)
     #define USE_XMAX_PLUG
     #define USE_YMAX_PLUG
     #define USE_ZMIN_PLUG
@@ -382,8 +500,8 @@
     #define USE_YMIN_PLUG
     #define USE_ZMIN_PLUG
   #endif
-
-  #if ENABLED(ENDER5)
+  
+  #if ENABLED(ENDER5) || ENABLED(ENDER5_PLUS)
     #define X_HOME_DIR 1
     #define Y_HOME_DIR 1
     #define Z_HOME_DIR -1
@@ -393,7 +511,7 @@
     #define Z_HOME_DIR -1
   #endif
   
-  #if NONE(V6_HOTEND, TH3D_HOTEND_THERMISTOR, KNOWN_HOTEND_THERMISTOR)
+  #if NONE(V6_HOTEND, TH3D_HOTEND_THERMISTOR, KNOWN_HOTEND_THERMISTOR, EZBOARD_PT100)
     #define TEMP_SENSOR_0 1
   #else
     #if ENABLED(EZBOARD_PT100)
@@ -428,11 +546,14 @@
       #define TEMP_SENSOR_BED 11
     #endif
   #endif
-  
+    
   #define TEMP_SENSOR_PROBE 0
   #define TEMP_SENSOR_CHAMBER 0
 
-  #define ENDSTOPPULLUPS
+  #if ENABLED(V3_EZABL_ON_SERVO)
+    #define ENDSTOPPULLUP_ZMIN
+    #define ENDSTOPPULLUP_ZMIN_PROBE
+  #endif
 
   #define X_MIN_ENDSTOP_INVERTING false
   #define Y_MIN_ENDSTOP_INVERTING false
@@ -443,70 +564,102 @@
   #define Z_MIN_PROBE_ENDSTOP_INVERTING false
   #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
-  #define X_DRIVER_TYPE A4988
-  #define Y_DRIVER_TYPE A4988
-  #define Z_DRIVER_TYPE A4988
-  #define E0_DRIVER_TYPE A4988
-  
-  #define ENDSTOP_INTERRUPTS_FEATURE
+  #define X_DRIVER_TYPE  TMC2208
+  #define Y_DRIVER_TYPE  TMC2208
+  #define Z_DRIVER_TYPE  TMC2208
+  #define E0_DRIVER_TYPE TMC2208
 
   #define X_ENABLE_ON 0
   #define Y_ENABLE_ON 0
   #define Z_ENABLE_ON 0
   #define E_ENABLE_ON 0
 
-  #define INVERT_X_DIR true
-  #define INVERT_Y_DIR true
-  
+  #if ENABLED(REVERSE_X_MOTOR)
+    #define INVERT_X_DIR false
+  #else
+    #define INVERT_X_DIR true
+  #endif
+
+  #if ENABLED(REVERSE_Y_MOTOR)
+    #define INVERT_Y_DIR false
+  #else
+    #define INVERT_Y_DIR true
+  #endif
+
   #if ENABLED(ENDER5)
-    #define INVERT_Z_DIR true
+    #if ENABLED(REVERSE_Z_MOTOR)
+      #define INVERT_Z_DIR false
+    #else
+      #define INVERT_Z_DIR true
+    #endif
   #else
-    #define INVERT_Z_DIR false
-  #endif  
-  
-  #if ENABLED(REVERSE_E_MOTOR_DIRECTION)
-    #define INVERT_E0_DIR false
-  #else
-    #define INVERT_E0_DIR true
+    #if ENABLED(REVERSE_Z_MOTOR)
+      #define INVERT_Z_DIR true
+    #else
+      #define INVERT_Z_DIR false
+    #endif
   #endif
   
+  #if ENABLED(SOVOL_SV01)
+    #if ENABLED(REVERSE_E_MOTOR_DIRECTION)
+      #define INVERT_E0_DIR true
+    #else
+      #define INVERT_E0_DIR false
+    #endif
+  #else
+    #if ENABLED(REVERSE_E_MOTOR_DIRECTION)
+      #define INVERT_E0_DIR false
+    #else
+      #define INVERT_E0_DIR true
+    #endif
+  #endif
+
   #define INVERT_E1_DIR false
   #define INVERT_E2_DIR false
   #define INVERT_E3_DIR false
   #define INVERT_E4_DIR false
   #define INVERT_E5_DIR false
-  #define INVERT_E6_DIR false
-  #define INVERT_E7_DIR false
 
-  #if ENABLED(EZOUT_ENABLE)
-    #define FILAMENT_RUNOUT_SENSOR
-  #endif
-
-  #if ENABLED(FILAMENT_RUNOUT_SENSOR)
-    #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
-    #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
-    #define FIL_RUNOUT_STATE     LOW       // Pin state indicating that filament is NOT present.
-    #define FIL_RUNOUT_PULLUP               // Use internal pullup for filament runout pins.
-    //#define FIL_RUNOUT_PULLDOWN           // Use internal pulldown for filament runout pins.
-
-    // Set one or more commands to execute on filament runout.
-    // (After 'M412 H' Marlin will ask the host to handle the process.)
-    #define FILAMENT_RUNOUT_SCRIPT "M600"
-
-    // After a runout is detected, continue printing this length of filament
-    // before executing the runout script. Useful for a sensor at the end of
-    // a feed tube. Requires 4 bytes SRAM per sensor, plus 4 bytes overhead.
-    //#define FILAMENT_RUNOUT_DISTANCE_MM 25
-
-    #ifdef FILAMENT_RUNOUT_DISTANCE_MM
-      // Enable this option to use an encoder disc that toggles the runout pin
-      // as the filament moves. (Be sure to set FILAMENT_RUNOUT_DISTANCE_MM
-      // large enough to avoid false positives.)
-      //#define FILAMENT_MOTION_SENSOR
+  #define ENCODER_PULSES_PER_STEP 4
+  #define ENCODER_STEPS_PER_MENU_ITEM 1
+  
+  #if ENABLED(ENDER5_PLUS)
+    #if DISABLED(ENDER5_PLUS_NOABL) && DISABLED(ENDER5_PLUS_EZABL)
+      #define BLTOUCH
+    #define SERVO0_PIN P2_04
+    #ifndef EZABL_PROBE_EDGE
+      #define EZABL_PROBE_EDGE 35
+    #endif
+    #ifndef EZABL_POINTS
+      #define EZABL_POINTS 5
+    #endif
+    #if DISABLED(CUSTOM_PROBE)
+        #define NOZZLE_TO_PROBE_OFFSET { -44, -9, 0}
+      #endif
+    #endif  
+    #if DISABLED(ENDER5_PLUS_NOABL)
+      #define ABL_ENABLE
     #endif
   #endif
+
+  #define EZBOARD
+
+  #if ENABLED(EZOUTV2_ENABLE) || ENABLED(CR10S_STOCKFILAMENTSENSOR)
+    #define FILAMENT_RUNOUT_SENSOR
+  #if ENABLED(FILAMENT_RUNOUT_SENSOR)
+    #if ENABLED(EZOUTV2_ENABLE)
+      #define FIL_RUNOUT_STATE LOW
+    #else
+      #define FIL_RUNOUT_STATE HIGH
+    #endif
+    #define NUM_RUNOUT_SENSORS   1
+    #define FIL_RUNOUT_PULLUP
+    #define FILAMENT_RUNOUT_SCRIPT "M600"
+  #endif
 #endif
-// End PRINTER Board Settings
+  
+#endif
+//End EZBoard based Machine Settings
 
 /*
  * All other settings are stored in the Configuration_backend.h file. Do not change unless you know what you are doing.
