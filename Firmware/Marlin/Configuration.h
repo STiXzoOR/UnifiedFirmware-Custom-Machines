@@ -39,6 +39,7 @@
   #define EZABL_POINTS 5
   #define EZABL_PROBE_EDGE 20
   #define HEATERS_ON_DURING_PROBING
+  #define FINE_BABYSTEPPING
 
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 98 }
   #define DEFAULT_MAX_FEEDRATE          { 400, 400, 8, 50 }
@@ -53,8 +54,8 @@
     #define LINEAR_ADVANCE
     #define LINEAR_ADVANCE_K 0
     
-    #define DEFAULT_XJERK 10.0
-    #define DEFAULT_YJERK 10.0
+    #define DEFAULT_XJERK 7.0
+    #define DEFAULT_YJERK 7.0
     #define DEFAULT_ZJERK  0.3
   #else
     #define S_CURVE_ACCELERATION
