@@ -2353,8 +2353,8 @@
 
   #if ENABLED(EZBOARD) || ENABLED(SKR_E3_MINI_BOARD)
     #if AXIS_IS_TMC(X)
-      #if ENABLED(CUSTOM_TMC_CURRENT)
-        #define X_CURRENT       CUSTOM_X_CURRENT
+      #if X_MOTOR_CURRENT > 0
+        #define X_CURRENT       X_MOTOR_CURRENT
       #else
         #define X_CURRENT       600        // (mA) RMS current. Multiply by 1.414 for peak current.
       #endif
@@ -2383,8 +2383,8 @@
 
   #if ENABLED(EZBOARD) || ENABLED(SKR_E3_MINI_BOARD)
     #if AXIS_IS_TMC(Y)
-      #if ENABLED(CUSTOM_TMC_CURRENT)
-        #define Y_CURRENT   CUSTOM_Y_CURRENT
+      #if Y_MOTOR_CURRENT > 0
+        #define Y_CURRENT   Y_MOTOR_CURRENT
       #elif ENABLED(CR10_S5) || ENABLED(CR10S_S5)
         #define Y_CURRENT   800
       #elif ENABLED(CR10_S4) || ENABLED(CR10S_S4)
@@ -2418,8 +2418,8 @@
 
   #if ENABLED(EZBOARD) || ENABLED(SKR_E3_MINI_BOARD)
     #if AXIS_IS_TMC(Z)
-      #if ENABLED(CUSTOM_TMC_CURRENT)
-        #define Z_CURRENT     CUSTOM_Z_CURRENT
+      #if Z_MOTOR_CURRENT > 0
+        #define Z_CURRENT     Z_MOTOR_CURRENT
       #elif ENABLED(DUAL_Z_MOTORS)
         #define Z_CURRENT     1000
       #else
@@ -2472,8 +2472,8 @@
   #endif
 
   #if AXIS_IS_TMC(E0) || ENABLED(SKR_E3_MINI_BOARD)
-    #if ENABLED(CUSTOM_TMC_CURRENT)
-      #define E0_CURRENT    CUSTOM_E0_CURRENT
+    #if E0_MOTOR_CURRENT > 0
+      #define E0_CURRENT    E0_MOTOR_CURRENT
     #elif ENABLED(PANCAKE_STEPPER)
       #define E0_CURRENT    600
     #else
@@ -2726,11 +2726,14 @@
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
-    #if ENABLED(CUSTOM_STALL_SENSITIVITY)
-      #define X_STALL_SENSITIVITY  CUSTOM_X_STALL_SENSITIVITY
-      #define Y_STALL_SENSITIVITY  CUSTOM_Y_STALL_SENSITIVITY
+    #if X_MOTOR_STALL_SENSITIVITY > 0
+      #define X_STALL_SENSITIVITY  X_MOTOR_STALL_SENSITIVITY
     #else
       #define X_STALL_SENSITIVITY  8
+    #endif
+    #if Y_MOTOR_STALL_SENSITIVITY > 0
+      #define Y_STALL_SENSITIVITY  Y_MOTOR_STALL_SENSITIVITY
+    #else
       #define Y_STALL_SENSITIVITY  8
     #endif
     #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
