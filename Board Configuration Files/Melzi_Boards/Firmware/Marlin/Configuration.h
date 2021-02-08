@@ -1,6 +1,8 @@
 /**
  * For directions on how to use this firmware visit http://uf2.th3dstudio.com and click on your printer/board link
  * NO IMPLIED SUPPORT OR WARRANTY IS PROVIDED WITH THIS FIRMWARE AND IS PROVIDED AS-IS
+ *
+ * MAKE SURE ALL SLICERS AND OTHER PROGRAMS THAT CONNECT TO YOUR PRINTER COM PORT ARE CLOSED BEFORE FLASHING.
  */
 #pragma once
 #define CONFIGURATION_H_VERSION 020007
@@ -261,7 +263,7 @@
 
 // PID BED TEMPERATURE CONTROL ---------------------
 // If you want PID Bed Temperature control enable the below line. You will need to tune it for your machine.
-// See the PID Bed setup guide here: https://support.th3dstudio.com/hc/en-us/articles/360054750691
+// See the PID Bed setup guide here: https://support.th3dstudio.com/hc/guides/diy-guides/p-i-d-bed-calibration-guide/
 //#define ENABLE_PIDBED
 
 // FINE BABYSTEPPING -------------------------------
@@ -412,8 +414,8 @@
     #endif 
     #define DIRECT_DRIVE_PRINTER
     #if ENABLED(HOME_ADJUST)
-      #define X_MIN_POS X_HOME_ADJUST_LOCATION
-      #define Y_MIN_POS Y_HOME_ADJUST_LOCATION
+      #define X_MIN_POS X_HOME_LOCATION
+      #define Y_MIN_POS Y_HOME_LOCATION
     #else
       #define X_MIN_POS 0
       #define Y_MIN_POS 0
@@ -438,8 +440,8 @@
     #endif
     #define DIRECT_DRIVE_PRINTER
     #if ENABLED(HOME_ADJUST)
-      #define X_MIN_POS X_HOME_ADJUST_LOCATION
-      #define Y_MIN_POS Y_HOME_ADJUST_LOCATION
+      #define X_MIN_POS X_HOME_LOCATION
+      #define Y_MIN_POS Y_HOME_LOCATION
     #else
       #define X_MIN_POS 0
       #define Y_MIN_POS 0
@@ -458,8 +460,8 @@
     #endif 
     #define DIRECT_DRIVE_PRINTER
     #if ENABLED(HOME_ADJUST)
-      #define X_MIN_POS X_HOME_ADJUST_LOCATION
-      #define Y_MIN_POS Y_HOME_ADJUST_LOCATION
+      #define X_MIN_POS X_HOME_LOCATION
+      #define Y_MIN_POS Y_HOME_LOCATION
     #else
       #define X_MIN_POS -33
       #define Y_MIN_POS -10
@@ -478,8 +480,8 @@
     #endif 
     #define DIRECT_DRIVE_PRINTER
     #if ENABLED(HOME_ADJUST)
-      #define X_MIN_POS X_HOME_ADJUST_LOCATION
-      #define Y_MIN_POS Y_HOME_ADJUST_LOCATION
+      #define X_MIN_POS X_HOME_LOCATION
+      #define Y_MIN_POS Y_HOME_LOCATION
     #else
       #define X_MIN_POS -21
       #define Y_MIN_POS -7
@@ -498,8 +500,8 @@
     #endif 
     #define DIRECT_DRIVE_PRINTER
     #if ENABLED(HOME_ADJUST)
-      #define X_MIN_POS X_HOME_ADJUST_LOCATION
-      #define Y_MIN_POS Y_HOME_ADJUST_LOCATION
+      #define X_MIN_POS X_HOME_LOCATION
+      #define Y_MIN_POS Y_HOME_LOCATION
     #else
       #define X_MIN_POS -2
       #define Y_MIN_POS -8
@@ -518,8 +520,8 @@
     #endif 
     #define DIRECT_DRIVE_PRINTER
     #if ENABLED(HOME_ADJUST)
-      #define X_MIN_POS X_HOME_ADJUST_LOCATION
-      #define Y_MIN_POS Y_HOME_ADJUST_LOCATION
+      #define X_MIN_POS X_HOME_LOCATION
+      #define Y_MIN_POS Y_HOME_LOCATION
     #else
       #define X_MIN_POS -2
       #define Y_MIN_POS -8
@@ -538,8 +540,8 @@
     #endif 
     #define DIRECT_DRIVE_PRINTER
     #if ENABLED(HOME_ADJUST)
-      #define X_MIN_POS X_HOME_ADJUST_LOCATION
-      #define Y_MIN_POS Y_HOME_ADJUST_LOCATION
+      #define X_MIN_POS X_HOME_LOCATION
+      #define Y_MIN_POS Y_HOME_LOCATION
     #else
       #define X_MIN_POS -7
       #define Y_MIN_POS -23
